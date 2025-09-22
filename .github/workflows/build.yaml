@@ -1,0 +1,36 @@
+name: Node.js Code Build
+
+# Main 브랜치 Push 작업 트리거
+on:
+  push:
+    branches: [ main ]
+
+# Test : 자동화된 단위/통합 테스트
+jobs:
+  build-test:
+    name: Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest # 러너 운영체제
+    strategy:
+      fail-fast: true # node 특정 버전 실패 시 job(작업) 취소
+      matrix:
+        node: [20, 22]
+
+    steps:
+      # 리포지토리 코드 체크아웃(다운로드)
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Node.js 버전을 설치 및 설정과 캐싱
+      - name: Setup Node
+        uses: actions/setup-node@v4 
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm # npm 캐시 활성화
+
+      # 의존성 설치
+      - name: Install deps
+        run: npm ci || npm i # ci 로 설치 실패 시, i(install) 진행
+      
+      # 테스트 진행
+      - name: Test
+        run: npm test
