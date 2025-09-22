@@ -29,7 +29,7 @@ jobs:
 
       # 의존성 설치
       - name: Install deps
-        run: npm ci || npm i # ci 로 설치 실패 시, i(install) 진행
+        run: npm i # i(install) 진행
       
       # 테스트 진행
       - name: Test
