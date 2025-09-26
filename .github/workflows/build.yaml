@@ -10,10 +10,6 @@ jobs:
   build-test:
     name: Test (Node ${{ matrix.node }})
     runs-on: ubuntu-latest # 러너 운영체제
-    strategy:
-      fail-fast: true # node 특정 버전 실패 시 job(작업) 취소
-      matrix:
-        node: [20, 22]
 
     steps:
       # 리포지토리 코드 체크아웃(다운로드)
@@ -24,7 +20,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4 
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 22
 
       # 의존성 설치
       - name: Install deps
