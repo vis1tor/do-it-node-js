@@ -1,20 +1,51 @@
-## Node.js 개념 & 장점
+# 🗓️ 스터디 일정 요약 (10월 말 ~ 11월 초 리뷰 예정)
 
-### 1. Node.js 개념
-- **Chrome V8 자바스크립트 엔진** 기반의 자바스크립트 런타임  
-  → 웹 브라우저뿐만 아니라 서버나 로컬 환경에서도 자바스크립트를 실행 가능
-- 자바스크립트로 서버 애플리케이션 개발 가능
-- 백엔드 개발 환경에서도 자바스크립트를 활용할 수 있도록 지원
+---
 
-### 2. Node.js 장점
-#### 2-1. 하나의 언어로 프론트엔드와 백엔드 개발 가능
-- 프론트엔드 → HTML, CSS, 자바스크립트(React 등)  
-- 백엔드 → PHP, Ruby, Python, 그리고 자바스크립트(Node.js)
+## ✅ 1단계 — Flask 기본 웹앱 구현
 
-#### 2-2. 활발한 개발자 커뮤니티
-- 대규모 커뮤니티로 다양한 피드백과 자료 공유 가능
-- 지역/주제별로 폭넓은 논의가 이루어짐
+**목표:**  
+Python Flask로 간단한 웹 서버 구축
 
-#### 2-3. 다양한 3rd Party 모듈
-- 수많은 개발자들이 만든 오픈소스 모듈을 활용할 수 있어 생산성 증대<br><br/>
-> 참고 강의: [Node.js 강의 (YouTube)](https://www.youtube.com/watch?v=4inLYlZOKAU&list=PLG7te9eYUi7vxSvo6hvhOaht8oP0PoCwi)
+**내용:**  
+- “Hello World” 페이지 띄우기
+
+**참고:**  
+- 로컬 PC에 Docker 설치  
+- [http://127.0.0.1:5000](http://127.0.0.1:5000) 로 접속 테스트
+
+---
+
+## ✅ 2단계 — Docker 이미지 빌드 및 푸시 자동화
+
+**목표:**  
+Flask 앱을 Docker 이미지로 빌드 후 ECR에 업로드
+
+**내용:**  
+- `Dockerfile` 작성  
+- GitHub Actions로 CI 파이프라인 구성 (빌드 → ECR Push)
+
+**결과:**  
+- ECR에 최신 Flask 이미지 확인
+
+---
+
+## ✅ 3단계 — Argo CD를 통한 배포 자동화
+
+**목표:**  
+Argo CD에서 ECR 이미지를 Pull하여 배포 테스트
+
+**내용:**  
+- Auto Sync / Manual Sync 방식 비교  
+- EKS 또는 로컬 k8s 환경 중 선택
+
+---
+
+## ✅ 4단계 — Argo CD Image Updater 조사
+
+**목표:**  
+이미지 자동 업데이트 동작 구조 및 설정 방식 이해
+
+**내용:**  
+- Application annotation 예시  
+- Git write-back / pull-request 방식 비교
